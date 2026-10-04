@@ -1,0 +1,38 @@
+[
+  {
+    "severity": "MEDIUM",
+    "rule": "High Request Volume",
+    "source_ip": "203.0.113.77",
+    "details": "10 requests \u2014 possible scanning or DoS activity"
+  },
+  {
+    "severity": "MEDIUM",
+    "rule": "Path Brute Forcing",
+    "source_ip": "203.0.113.77",
+    "details": "10 requests returned 404 \u2014 possible directory/path enumeration"
+  },
+  {
+    "severity": "HIGH",
+    "rule": "Possible SQL injection pattern",
+    "source_ip": "198.51.100.5",
+    "details": "Request path: /products?id=1'%20UNION%20SELECT%20username,password%20FROM%20users-- (line 12)"
+  },
+  {
+    "severity": "HIGH",
+    "rule": "Possible XSS pattern",
+    "source_ip": "198.51.100.6",
+    "details": "Request path: /search?q=%3Cscript%3Ealert(1)%3C/script%3E (line 13)"
+  },
+  {
+    "severity": "HIGH",
+    "rule": "Possible path traversal",
+    "source_ip": "198.51.100.7",
+    "details": "Request path: /download?file=../../etc/passwd (line 14)"
+  },
+  {
+    "severity": "HIGH",
+    "rule": "Possible local file inclusion attempt",
+    "source_ip": "198.51.100.7",
+    "details": "Request path: /download?file=../../etc/passwd (line 14)"
+  }
+]

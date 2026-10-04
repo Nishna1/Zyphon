@@ -1,0 +1,20 @@
+[
+  {
+    "severity": "HIGH",
+    "rule": "Brute Force SSH Attempt",
+    "source_ip": "203.0.113.50",
+    "details": "7 failed login attempts (usernames tried: admin, oracle, postgres, root, test)"
+  },
+  {
+    "severity": "MEDIUM",
+    "rule": "Username Enumeration",
+    "source_ip": "203.0.113.50",
+    "details": "Tried 3 invalid usernames: oracle, postgres, test"
+  },
+  {
+    "severity": "CRITICAL",
+    "rule": "Successful Login After Brute Force",
+    "source_ip": "203.0.113.50",
+    "details": "Login succeeded as 'root' (line 11) after 7 prior failed attempts \u2014 possible compromise"
+  }
+]

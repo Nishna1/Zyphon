@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 """
-soc-alert - a lightweight log analysis & alerting tool for SOC-analyst practice.
+zyphon - a lightweight log analysis & alerting tool for SOC-analyst practice.
 """
 
 import argparse
@@ -8,6 +9,8 @@ import sys
 from zyphon import auth_log_analyzer
 from zyphon import web_log_analyzer
 from zyphon import report
+from zyphon import live_watch
+
 
 def build_parser():
     parser = argparse.ArgumentParser(
@@ -30,6 +33,21 @@ def build_parser():
         help="Failed-attempt threshold before flagging an IP (default: 5)"
     )
 
+    watch_parser = subparsers.add_parser("watch", help="Watch a log file live and alert in real time")
+    watch_parser.add_argument("logfile", help="Path to the log file to tail")
+    watch_parser.add_argument(
+        "--type", choices=["auth", "web"], required=True,
+        help="Log type: 'auth' or 'web'"
+    )
+    watch_parser.add_argument(
+        "--threshold", type=int, default=5,
+        help="Failed-attempt / request-volume threshold (default: 5)"
+    )
+    watch_parser.add_argument(
+        "--from-start", action="store_true",
+        help="Process the whole file from the beginning instead of only new lines"
+    )
+
     return parser
 
 
@@ -50,6 +68,13 @@ def main():
             if args.output:
                 report.save_json(alerts, args.output)
                 print(f"\n[*] Alerts saved to {args.output}")
+
+        elif args.command == "watch":
+            if args.type == "auth":
+                live_watch.watch_auth(args.logfile, threshold=args.threshold, from_start=args.from_start)
+            else:
+                web_threshold = args.threshold if args.threshold != 5 else 50
+                live_watch.watch_web(args.logfile, threshold=web_threshold, from_start=args.from_start)
     except FileNotFoundError:
         print(f"[!] Log file not found: {args.logfile}")
         sys.exit(1)
