@@ -1,4 +1,4 @@
-# SOC Alert Toolkit
+# Zyphon
 
 A lightweight, dependency-free log analysis and alerting tool for SOC-analyst
 practice. Parses standard log formats and flags suspicious activity using
@@ -30,8 +30,8 @@ rate, and knowing how you'd tune the threshold.
 ## Install
 
 ```bash
-git clone https://github.com/nishna1/soc-alert-toolkit.git
-cd soc-alert-toolkit
+git clone https://github.com/Nishna1/zyphon.git
+cd zyphon
 pip install -e .
 ```
 
@@ -39,23 +39,23 @@ pip install -e .
 
 ```bash
 # Analyze an auth log
-soc-alert analyze sample_logs/sample_auth.log --type auth
+zyphon analyze sample_logs/sample_auth.log --type auth
 
 # Analyze a web access log
-soc-alert analyze sample_logs/sample_access.log --type web --threshold 10
+zyphon analyze sample_logs/sample_access.log --type web --threshold 10
 
 # Adjust the failed-attempt threshold
-soc-alert analyze /var/log/auth.log --type auth --threshold 3
+zyphon analyze /var/log/auth.log --type auth --threshold 3
 
 # Save alerts as JSON
-soc-alert analyze /var/log/auth.log --type auth -o alerts.json
+zyphon analyze /var/log/auth.log --type auth -o alerts.json
 ```
 
 Sample logs are included in `sample_logs/` so you can try it immediately.
 
 ## Project structure
-soc-alert-toolkit/
-├── soc_alert/
+zyphon/
+├── zyphon/
 │ ├── init.py
 │ ├── cli.py
 │ ├── auth_log_analyzer.py
@@ -68,9 +68,9 @@ soc-alert-toolkit/
 └── README.md
 
 
-
 ## Author
 
 Nishna Rayamajhi
+
 
 

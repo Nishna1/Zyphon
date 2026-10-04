@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 soc-alert - a lightweight log analysis & alerting tool for SOC-analyst practice.
 """
@@ -6,14 +5,13 @@ soc-alert - a lightweight log analysis & alerting tool for SOC-analyst practice.
 import argparse
 import sys
 
-from soc_alert import auth_log_analyzer
-from soc_alert import web_log_analyzer
-from soc_alert import report
-
+from zyphon import auth_log_analyzer
+from zyphon import web_log_analyzer
+from zyphon import report
 
 def build_parser():
     parser = argparse.ArgumentParser(
-        prog="soc-alert",
+        prog="zyphon",
         description="Log analysis and alerting tool for SOC analyst practice.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
